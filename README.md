@@ -49,3 +49,13 @@ can be activated from CoqingMusic. CoqingMusic can either provide the pack itsel
 call `Player#addResourcePack()` and not `setResourcePack()` to not override existing packs),
 or if you are already providing a resource pack to your players, you can add the contents
 of the pack yourself to your server resource pack.
+
+Examples of both methods can be viewed below:
+
+https://github.com/user-attachments/assets/1bbb1ba5-e47e-41ec-bef6-bf27e6a0d01c
+
+https://github.com/user-attachments/assets/4b5a0e59-235f-4447-91c1-e8b5e52b02eb
+
+
+
+
