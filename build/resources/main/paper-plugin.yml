@@ -1,0 +1,14 @@
+api-version: 1.21.4
+name: CoqingMusic
+version: 1.0.0
+main: com.coqing.coqingmusic.CoqingMusic
+loader: com.coqing.coqingmusic.load.LibraryLoader
+description: A plugin template for Coqing's plugins.
+authors:
+  - Coqing
+dependencies:
+  server:
+    CoqingUtils:
+      load: BEFORE
+      required: true
+      join-classpath: true

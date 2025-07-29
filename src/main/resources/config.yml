@@ -1,0 +1,69 @@
+# =====================================
+# |           CoqingMusic             |
+# |         Made by Coqing            |
+# =====================================
+
+# -- Split Loading --
+# Whether songs should be loaded in 2 parts:
+#   1. When the plugin loads - The header of the songs (song name, length, title, etc) are loaded.
+#   2. On demand (when a player requests a song to be played) - the rest of the song gets loaded.
+# Since NoteBlockLib doesn't let us load only the header itself, I have to load everything but get the header stuff.
+# If this option is disabled, then the entire song will be loaded into memory on load.
+# While that may save some seconds with loading the entire song, loading heavy songs will OOM
+# your server if you do not have spare RAM.
+split-loading: true
+
+# -- Stereo Spacing --
+# Every note played has panning - a value determining how left or right the sound should be played.
+# Usually, the value range from 0 to 1 positively (right), and -1 to 0 (left).
+# Those default values do not give the illusion of panning in Minecraft, so we need to make that
+# spacing bigger by multiplying the panning by the provided value.
+# NOTE: If you give a too big value, the sound will be very far and not loud.
+stereo-spacing: 2.5
+
+# -- Note Debugging --
+# This is purely for showing which notes are played currently.
+# Please note that this is very spammy, and might even break your chat if you have
+# message combiners and longer chat history.
+note-debugging: false
+
+# -- 10 Octave Pack --
+# Most songs are not within Minecraft's 2 octave range, therefore without this texture pack,
+# we need to transpose the notes as seen in the config option below, which can ruin the listening
+# experience quite a bit.
+# When this option is enabled, the plugin sends the 10 octave pack to any player that joins.
+# That pack itself isn't required, but players will not hear anything if they decline the pack
+# or the pack fails to download.
+10-octave-pack:
+  # Whether this should be enabled.
+  enabled: false
+
+  # If you provide a custom resource pack for your players, disable this option
+  # and include the 10 octaves pack in your resource pack:
+  # https://github.com/RaphiMC/NoteBlockLib/raw/refs/heads/main/Extended%20Octave%20Range%20Notes%20Pack.zip
+  # Otherwise, enable this option so that CoqingMusic can provide this pack itself.
+  provide-pack: true
+
+# -- Various song opimizations --
+song-optimizations:
+  # -- Note Transposing --
+  # Most songs are outside of the 2 octave range, and Minecraft cannot play notes outside of that
+  # range without the 10 octave pack. There are a couple methods to do this:
+  #   - INSTRUMENT_SHIFT -> The most effective one. Shifts the instrument itself to one which has around
+  #                         the same tone as the original note.
+  #   - TRANSPOSE -> The standard option. Simply transposes the note to be within the range.
+  #   - CLAMP -> The most ugly sounding one. Basically, if a note is higher than the 2 octave range, it clamps
+  #              the note to the highest possible one (F#5). Otherwise, it clamps the note to the lowest possible one. (F#3)
+  # NOTE: This option is ignored if 10 octave pack is enabled.
+  note-transposing: INSTRUMENT_SHIFT
+
+  # -- Remove Duplicate Notes --
+  # Some songs have duplicate notes, which can't be heard anyways, and waste bandwidth.
+  # This is useful with large songs.
+  duplicate-notes: true
+
+  # -- Remove Silent Notes --
+  # Some songs have silent notes which can't be heard, since they are volume 0.
+  # It is most commonly seen in NBS songs made by people who put "watermarks" in the songs,
+  # and Black MIDIs.
+  silent-notes: true
